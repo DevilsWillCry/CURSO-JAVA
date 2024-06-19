@@ -1,0 +1,215 @@
+//* Redistributions of source code must retain the above copyright *//
+****************RECOMENDACIONES QUE DEBERÍA DE TENER A LA HORA DE PROGRAMAR EN JAVA**********************************
+
+1. Tener mucho cuidado con el desbordamiento: 
+    - Hay la posiblidad de sumar una variable tipo (long) y almacenarla en una variable tipo (int),
+      pero puede pasar que si la variable tipo (long) es mayor a la tipo (int) va generar un desbordamiento(Overflow)
+    Ejemplo:
+        byte a = 1;
+        long b = 10;
+        int c = (int) ((byte)a + (long)b)
+    !OJO¡, Esto puede sumarse sin problema pero puede pasar lo anteriormente dicho, desbordamiento(Overflow)
+
+2. Maneras de como saber el valor minimo y maximo de un tipo de dato:
+    - Usando el siguiente metodo MAX_VALUE, para hallar su valor maximo
+      o usando MIN_VALUE, para hallar su valor minimo
+    Ejemplo:
+      Queremos saber el valor maximo y minimo de un byte, short, entero,  long, Float, Double  usaremos lo siguiente:
+        - Valor Maximo:
+                Byte.MAX_VALUE
+                Short.MAX_VALUE
+                Integer.MAX_VALUE
+                Long.MAX_VALUE
+                Float.MAX_VALUE    //En este caso se aplica para la cantidad de decimales admitidos a la Derecha
+                Double.MAX_VALUE   //En este caso se aplica para la cantidad de decimales admitidos a la Derecha
+
+        - Valor Minimo:
+                Byte.MIN_VALUE 
+                Integer.MIN_VALUE 
+                Short.MIN_VALUE 
+                Long.MIN_VALUE 
+                Float.MIN_VALUE 
+                Double.MIN_VALUE 
+      Si queremos ver en la consola de comando su valor usaremos System.out.println:
+         System.out.println(Integer.MAX_VALUE)
+         System.out.println(Integer.MIN_VALUE)
+
+3. Manera de como imprimir un texto formateado, quiere decir para cuando hay varias variables e imprimirlos en un sola linea
+    ¡IMPORTANTE! FORMATOS MÁS COMUNES: 
+        %d: entero decimal
+        %f: número de punto flotante
+        %c: Carácter (char)
+        %s: cadena de texto
+        %b / %B: Booleano (minúsculas/mayúsculas)
+        %n: salto de línea
+        %x: entero en formato hexadecimal
+        %o: entero en formato octal
+        %e: número de punto flotante en notación científica
+        %%: Es el carácter '%'
+
+     - Se puede usar el metodo 'System.out.printf' o 'String.format'
+     - 'System.out.printf'
+            El metodo 'System.out.printf' permite imprimir texto formteado directamente en la consola.
+            - Sintaxis basica: 
+                - System.out.printf(String format, Object...Args) ----> System.out.printf("%d %d", a, b)
+                Ejemplos: 
+                    1. Imprimir enteros: 
+                        int a = 20;
+                        int b = 10;
+                        System.out.printf("El valor de a es %d y el valor de b es %d",a, b);
+
+                    2. Imprimir numeros de punto flotante:
+                        double x = 3.1416;
+                        System.out.printf("E valor de Pi es: %.2f%n",x); //Limita a 2 decimales (.2f)
+
+                    3. Imprimir cadenas:
+                        String nombre = "Juan";
+                        System.out.printf("Hola, %s!%n",nombre);
+
+                    4. Imprimir Multiples Tipos:
+                        int edad = 25;
+                        double altura = 1.75;
+                        String nombre = "Ana";
+                        System.out.printf("%s tiene %d años y mide %0.2f. %n", nombre, edad, altura);
+     - 'String.format'
+            Si se desea crear una cadena formateada sin imprimirla inmediatamente, se puede usar 'String.format'
+            - Sintaxis Basica: 
+                - String Formated_String = String.format(String forma, Object...Arg) ---> String.format("%d %d", a, b)
+                Ejemplos:
+                    1. Crear una cadena formateada:
+                        int a = 10;
+                        int b = 20;
+                        String Result = String.format("El valor de a es: %d, El valor de b es: %d", a, b);
+                        System.out.println(Result);
+
+                    2. Crear una cadena formateada con números flotantes:
+                        double x = 3.14159
+                        String Result = String.format("El valor de Pi es: %0.2f", x);
+                        System.out.println(Result);
+
+                    3. Crear una cadena formateda con multiples tipos:
+                        int edad = 25;
+                        float estatura = 1.75;
+                        String nombre = "Ana";
+                        String Result = String.format("%s tiene %d años y mide %0.2f metros", nombre, edad, estatura);
+4. Refundición. 
+       Una Refundición en Java es modificar el tipo de datos que tiene una variable. En el siguiente caso math nos facilitaría 
+       un double, pero al realizar una refundición lo convertiremos en integer. Ambos son datos de tipo primitivo.
+       Ejemplos:
+          - Queremos convertir un número de math.random lo que nos devolverá un double, pero lo convertiremos en int por refundición y almacenar el valor en un int
+            int n = (int) --> Pondremos el dato al cual queremos convertir la variable
+            int a = (int) (Math.random()*100); 
+5. La clases "String".
+        En Java, la clase 'String' proporciona una variedad de métodos útiles para manipular y trabajar con cadenas de texto.
+        - Métodos más comunes de la clase 'String':
+
+            1. 'length()':
+                Devuelve la longitud de la cadena.
+                Ejemplo:
+                    String str = "Hello, World!";
+                    int len = str.length();
+
+            2. 'charAt(int index)':
+                Devuelve el carácter de la posición especificada.
+                Ejemplo:
+                    String str = "Hello, World!";
+                    char ch = str.charAt(0) ---> ch es 'H
+
+            3. 'substring(int beginIndex)' y 'substring(int beginIndex, int endIndex)':
+                Devuelve una subcadena comenzanzo desde 'beginIndex' hasta el final de la cadena o hasta 'endIndex'            
+                Ejemplo:
+                    String str = "Hello, World!";
+                    String sub1 = str.substring(7); ----> sub1 es igual "World!";
+                    String sub2 = str.substring(0,5); ----> sub2 es igual "Hello";
+
+            4. 'indexOf(String str)' y 'indexOf(String str, int fromIndex)':
+                Devuelve el índice de la primera aparición de la subcadena especificada o -1 si no se encuentra.
+                IndexOf va de izquierda a derecha(--->).
+                Ejemplo:
+                    String str = "Hello, World!";
+                    int index1 = str.indexOf("World"); ---> index es 7  
+                    int index2 = str.indexOf('o',5); ---> index es 8
+            
+            5. 'lastIndexOf(String str)' y 'lastIndexOf(String str, int fromIndex)':
+                Devuelve el indice de la última aparición de la subcadena especificada o -1 si no se encuentra.
+                lastIndexOf va de derecha a izquierda(<---).
+                Ejemplo:
+                    String str = "Hello, World!"; 
+                    int lastIndex1 = str.lastIndexOf("o"); ---> lastIndex1 es 8 
+                    int lastIndex2 = str.lastIndexOf("o",5); ---> lastIndex es 4 
+            
+            6. 'contains(CharSequence s)':
+                Devuelve 'True' si la cadena contiene la secuencia de caracteres especificada.
+                Ejemplo:
+                    String str = "Hello, World!";
+                    boolean constainsWolrd = str.contains("World"); --> 'True', Ya que existe en el string 'str'
+            
+            7. 'equals(Object anObject)' y 'equalsIgnoreCase(String another String)':
+                Compara la cadena con otro objeto para determinar la igualdad.
+                Ejemplo:
+                    String str = "Hello, Wolrd!";
+                    boolean isEqual = str.equals("Hello, world!"); ---> 'True'
+                    boolean isEqualIgnoreCase = str.equalsIgnoreCase("Hello, WORLD!"); ---> 'True'
+            
+            8. 'toLowerCase()' y 'toUpperCase()':
+                Convierte todos los caracteres de la cadena a minúsculas o mayúsculas.
+                Ejemplo:
+                    String str = "Hello, World!";
+                    String lower = str.toLowerCase();
+                    String upper = str.toUpperCase();
+            
+            9. 'trim()':
+                Elimina los espacios en blanco inciales y finales de la cadena.
+                Ejemplo:
+                    String str = "    Hello, World!    ";
+                    String trimmed = str.trim(); ---> "Hello, World!"
+
+            10. 'replace(char oldChar, char newChar)' y 'replace(CharSequence target, CharSequence replacement)':
+                Reemplaza todas las apariciones de un cáracter o secuencia de caracteres con otra.
+                Ejemplo:
+                    String str = "Hello, World!";
+                    String ReplaceChars = str.replace('o','0'); ---> "Hell0, W0rld!"
+                    String ReplaceSeq = str.replace("World", "Java"); ---> "Hello, Java!"
+            
+            11. 'split(String Regex)' y 'split(String Regex, int limit)':
+                Divide la cadena en una matriz de cadenas usando una expresión regular.
+                Ejemplo: 
+                    String str = "Hello, World!";
+                    String[] parts = str.split(", "); ---> {'Hello', 'World!}
+            
+            12. 'startsWith(String prefix)' y 'endsWith(String suffix)':
+                Comprueba si la cadena comienza o termina con la secuencia de caracteres especificada.
+                Ejemplo:
+                    String str = "Hello, World!";
+                    boolean starts = str.startsWith("Hello"); ---> 'True'
+                    boolean ends = str.endsWith("World!"); ---> 'True
+            
+            13. 'isEmpty()' y 'isBlank()':
+                'isEmpty()' devuelve 'true' si la cadena está vacía(longiutd 0).  
+                'isBlank()'(Disponible en Java 11+) devuelve 'true' si la cadena está vacía o solo contiene espacios en blanco.
+                Ejemplo:
+                    boolean empty = "".isEmpty(); ---> 'True'
+                    boolean blank = " ".isBlank(); ---> 'True'
+            
+            14. 'join(CharSequence, delimiter, CharSequence....elements)':
+                Une multiples cadenas con un delimitador
+                Ejemplo:
+                    String joined = String.join(", ", "Hello", "World", "Java"); ----> "Hello, World, Java"
+            
+            15. 'format(String format, Object...args)':
+                Devuelve una cadena formateada utilizando el forma especificado y los argumentos.
+                Ejemplo:
+                    String formated = String.format("Name: %s, Age: %d, "John", 30); ---> Name: John, Age: 30
+
+
+
+
+
+
+
+
+              
+
+
+
+
